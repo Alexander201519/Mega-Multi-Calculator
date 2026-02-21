@@ -19,6 +19,8 @@ ad_code = """
 
 components.html(ad_code, height=100)
 
+st.markdown("---")
+
 st.set_page_config(page_title="Mega Multi-Calculator", layout="wide")
 # ------------------ Dark Grey Background ------------------
 st.markdown(
@@ -152,6 +154,7 @@ with tab4:
 st.markdown("---")
 
 components.html(ad_code, height=100)
+
 
 
 
