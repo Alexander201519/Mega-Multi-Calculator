@@ -148,9 +148,12 @@ with tab4:
             st.success(f"BMI: {bmi:.2f}")
         else:
             st.error("Height must be greater than 0")
-mark.down(""")
+          
+st.markdown(
+    """
 
 components.html(ad_code, height=100)
+)
 
 
 
