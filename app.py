@@ -2,8 +2,6 @@ import streamlit as st
 import streamlit.components.v1 as components
 from fractions import Fraction
 
-st.title("Mega Multi-Calculator")
-
 st.subheader("Sponsored Ad")
 ad_code = """
 <script>
@@ -23,6 +21,9 @@ st.set_page_config(page_title="Mega Multi-Calculator", layout="wide")
 # Embed the ad
 components.html(ad_code, height=100)  # adjust height to match your ad
 st.set_page_config(page_title="Mega Multi-Calculator", layout="centered")
+
+st.title("Mega Multi-Calculator")
+
 # ------------------ Categories ------------------
 tab1, tab2, tab3, tab4 = st.tabs([
     "🧮 Basic Math",
@@ -135,5 +136,6 @@ with tab4:
             st.success(f"BMI: {bmi:.2f}")
         else:
             st.error("Height must be greater than 0")
+
 
 
