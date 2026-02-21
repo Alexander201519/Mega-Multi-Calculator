@@ -16,6 +16,7 @@ ad_code = """
 </script>
 <script src="https://www.highperformanceformat.com/5b015c1057edbc7ee57ab89750fbcd24/invoke.js"></script>
 """
+components.html(ad_code, height=100)
 
 # ------------------ Dark Grey Theme ------------------
 st.set_page_config(page_title="Mega Multi-Calculator", layout="wide")
@@ -165,6 +166,7 @@ with tab4:
             st.success(f"BMI: {bmi:.2f}")
         else:
             st.error("Height must be greater than 0")
+
 
 
 
