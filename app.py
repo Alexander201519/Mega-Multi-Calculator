@@ -3,6 +3,7 @@ import streamlit.components.v1 as components
 from fractions import Fraction
 
 st.subheader("Sponsored Ad")
+
 ad_code = """
 <script>
   atOptions = {
@@ -164,5 +165,6 @@ with tab4:
             st.success(f"BMI: {bmi:.2f}")
         else:
             st.error("Height must be greater than 0")
+
 
 
