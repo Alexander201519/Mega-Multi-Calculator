@@ -16,11 +16,43 @@ ad_code = """
 <script src="https://www.highperformanceformat.com/5b015c1057edbc7ee57ab89750fbcd24/invoke.js"></script>
 """
 
+# ------------------ Dark Grey Theme ------------------
 st.set_page_config(page_title="Mega Multi-Calculator", layout="wide")
 
-# Embed the ad
-components.html(ad_code, height=100)  # adjust height to match your ad
-st.set_page_config(page_title="Mega Multi-Calculator", layout="centered")
+st.markdown(
+    """
+    <style>
+    /* Page background */
+    .reportview-container {
+        background-color: #2e2e2e;
+        color: #a8ff60;
+    }
+    /* Sidebar */
+    .css-1d391kg {
+        background-color: #2e2e2e;
+    }
+    /* Inputs */
+    input, .stButton>button, select {
+        background-color: #f0f0f0;
+        color: #000;
+        border: 1px solid #4caf50;
+        border-radius: 6px;
+    }
+    /* Headers */
+    h1, h2, h3, h4, h5, h6 {
+        color: #a8ff60;
+    }
+    /* Results */
+    .st-success, .stWarning, .stError {
+        background-color: #f4f4f4;
+        color: #000;
+        border-radius: 6px;
+        padding: 5px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 st.title("Mega Multi-Calculator")
 
@@ -32,7 +64,6 @@ tab1, tab2, tab3, tab4 = st.tabs([
     "⚕️ Health"
 ])
 
-# ------------------ BASIC MATH ------------------
 with tab1:
     st.subheader("Basic Calculator")
     num1 = st.number_input("First number", key="b1")
@@ -75,7 +106,6 @@ with tab1:
         except:
             st.error("Invalid fraction")
 
-# ------------------ ADVANCED ------------------
 with tab2:
     st.subheader("Equation Solver (ax + b = 0)")
     a = st.number_input("a (coefficient)", key="eq_a")
@@ -88,7 +118,6 @@ with tab2:
             x = -b / a
             st.success(f"x = {x}")
 
-# ------------------ CONVERSIONS ------------------
 with tab3:
     st.subheader("Currency Converter")
     amount = st.number_input("Amount", key="cur_amount")
@@ -124,7 +153,6 @@ with tab3:
             res = temp - 273.15
         st.success(f"Result: {res:.2f}")
 
-# ------------------ HEALTH ------------------
 with tab4:
     st.subheader("BMI Calculator")
     weight = st.number_input("Weight (kg)", key="bmi_w")
@@ -136,6 +164,5 @@ with tab4:
             st.success(f"BMI: {bmi:.2f}")
         else:
             st.error("Height must be greater than 0")
-
 
 
