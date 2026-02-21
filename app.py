@@ -2,7 +2,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 from fractions import Fraction
 
-st.set_page_config(page_title="Mega Multi-Calculator", layout="wide")
+
 # ------------------ Adsterra ------------------
 st.markdown("---")
 st.subheader("Sponsored")
@@ -18,6 +18,10 @@ ad_code = """
 </script>
 <script src="https://www.highperformanceformat.com/5b015c1057edbc7ee57ab89750fbcd24/invoke.js"></script>
 """
+
+components.html(ad_code, height=100)
+
+st.set_page_config(page_title="Mega Multi-Calculator", layout="wide")
 # ------------------ Dark Grey Background ------------------
 st.markdown(
     """
@@ -148,4 +152,4 @@ with tab4:
             st.error("Height must be greater than 0")
 
 
-components.html(ad_code, height=100)
+
