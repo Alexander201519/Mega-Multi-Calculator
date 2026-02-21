@@ -3,7 +3,7 @@ import streamlit.components.v1 as components
 from fractions import Fraction
 
 
-# ------------------ Adsterra ------------------
+
 st.markdown("---")
 st.subheader("Sponsored")
 ad_code = """
@@ -153,4 +153,5 @@ with tab4:
 
 
 components.html(ad_code, height=100)
+
 
