@@ -16,31 +16,28 @@ ad_code = """
 </script>
 <script src="https://www.highperformanceformat.com/5b015c1057edbc7ee57ab89750fbcd24/invoke.js"></script>
 """
-components.html(ad_code, height=100)
 
-import streamlit as st
-from fractions import Fraction
-
+# ------------------ Dark Grey Theme ------------------
 st.set_page_config(page_title="Mega Multi-Calculator", layout="wide")
 
-# ------------------ Dark Grey Background & Smaller Inputs ------------------
 st.markdown(
     """
     <style>
-    /* Full page background */
-    .reportview-container, .css-18e3th9 {
-        background-color: rgba(30,30,30,1);
+    /* Page background */
+    .reportview-container {
+        background-color: #2e2e2e;
         color: #a8ff60;
     }
-    /* Sidebar background if using one */
+    /* Sidebar */
     .css-1d391kg {
-        background-color: rgba(30,30,30,1);
+        background-color: #2e2e2e;
     }
-    /* Inputs & buttons smaller */
+    /* Inputs */
     input, .stButton>button, select {
-        height: 30px !important;
-        font-size: 14px !important;
-        padding: 3px !important;
+        background-color: #f0f0f0;
+        color: #000;
+        border: 1px solid #4caf50;
+        border-radius: 6px;
     }
     /* Headers */
     h1, h2, h3, h4, h5, h6 {
@@ -68,7 +65,6 @@ tab1, tab2, tab3, tab4 = st.tabs([
     "⚕️ Health"
 ])
 
-# ------------------ BASIC MATH ------------------
 with tab1:
     st.subheader("Basic Calculator")
     num1 = st.number_input("First number", key="b1")
@@ -111,7 +107,6 @@ with tab1:
         except:
             st.error("Invalid fraction")
 
-# ------------------ ADVANCED ------------------
 with tab2:
     st.subheader("Equation Solver (ax + b = 0)")
     a = st.number_input("a (coefficient)", key="eq_a")
@@ -124,7 +119,6 @@ with tab2:
             x = -b / a
             st.success(f"x = {x}")
 
-# ------------------ CONVERSIONS ------------------
 with tab3:
     st.subheader("Currency Converter")
     amount = st.number_input("Amount", key="cur_amount")
@@ -160,7 +154,6 @@ with tab3:
             res = temp - 273.15
         st.success(f"Result: {res:.2f}")
 
-# ------------------ HEALTH ------------------
 with tab4:
     st.subheader("BMI Calculator")
     weight = st.number_input("Weight (kg)", key="bmi_w")
@@ -173,7 +166,4 @@ with tab4:
         else:
             st.error("Height must be greater than 0")
 
-# ------------------ Ads ------------------
-st.markdown("---")
-st.subheader("Your Ads Here")
-st.write("You can add your ad code or HTML here manually.")
+
