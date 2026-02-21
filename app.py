@@ -2,8 +2,6 @@ import streamlit as st
 import streamlit.components.v1 as components
 from fractions import Fraction
 
-st.set_page_config(page_title="Mega Multi-Calculator", layout="wide")
-
 st.title("Mega Multi-Calculator")
 
 st.subheader("Sponsored Ad")
@@ -19,6 +17,8 @@ ad_code = """
 </script>
 <script src="https://www.highperformanceformat.com/5b015c1057edbc7ee57ab89750fbcd24/invoke.js"></script>
 """
+
+st.set_page_config(page_title="Mega Multi-Calculator", layout="wide")
 
 # Embed the ad
 components.html(ad_code, height=100)  # adjust height to match your ad
@@ -135,4 +135,5 @@ with tab4:
             st.success(f"BMI: {bmi:.2f}")
         else:
             st.error("Height must be greater than 0")
+
 
