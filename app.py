@@ -3,7 +3,7 @@ import streamlit.components.v1 as components
 from fractions import Fraction
 
 
-st.markdown("---")
+
 ad_code = """
 <script>
   atOptions = {
@@ -154,6 +154,7 @@ with tab4:
 st.markdown("---")
 
 components.html(ad_code, height=100)
+
 
 
 
