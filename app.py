@@ -2,8 +2,10 @@ import streamlit as st
 import streamlit.components.v1 as components
 from fractions import Fraction
 
-st.subheader("Sponsored Ad")
-
+st.set_page_config(page_title="Mega Multi-Calculator", layout="wide")
+# ------------------ Adsterra ------------------
+st.markdown("---")
+st.subheader("Sponsored")
 ad_code = """
 <script>
   atOptions = {
@@ -16,39 +18,18 @@ ad_code = """
 </script>
 <script src="https://www.highperformanceformat.com/5b015c1057edbc7ee57ab89750fbcd24/invoke.js"></script>
 """
-
-# ------------------ Dark Grey Theme ------------------
-st.set_page_config(page_title="Mega Multi-Calculator", layout="wide")
-
+# ------------------ Dark Grey Background ------------------
 st.markdown(
     """
     <style>
-    /* Page background */
-    .reportview-container {
-        background-color: #2e2e2e;
+    /* Full page background */
+    .reportview-container, .css-18e3th9 {
+        background-color: rgba(30,30,30,1);
         color: #a8ff60;
     }
-    /* Sidebar */
+    /* Sidebar background if using one */
     .css-1d391kg {
-        background-color: #2e2e2e;
-    }
-    /* Inputs */
-    input, .stButton>button, select {
-        background-color: #f0f0f0;
-        color: #000;
-        border: 1px solid #4caf50;
-        border-radius: 6px;
-    }
-    /* Headers */
-    h1, h2, h3, h4, h5, h6 {
-        color: #a8ff60;
-    }
-    /* Results */
-    .st-success, .stWarning, .stError {
-        background-color: #f4f4f4;
-        color: #000;
-        border-radius: 6px;
-        padding: 5px;
+        background-color: rgba(30,30,30,1);
     }
     </style>
     """,
@@ -167,3 +148,4 @@ with tab4:
             st.error("Height must be greater than 0")
 
 
+components.html(ad_code, height=100)
