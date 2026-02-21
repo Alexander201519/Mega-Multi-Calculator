@@ -1,9 +1,29 @@
 import streamlit as st
 from fractions import Fraction
+import streamlit as st
+import streamlit.components.v1 as components
 
-st.set_page_config(page_title="Mega Multi-Calculator", layout="centered")
 
 st.title("Mega Multi-Calculator")
+
+st.subheader("Sponsored Ad")
+ad_code = """
+<script>
+  atOptions = {
+    'key' : '5b015c1057edbc7ee57ab89750fbcd24',
+    'format' : 'iframe',
+    'height' : 90,
+    'width' : 728,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/5b015c1057edbc7ee57ab89750fbcd24/invoke.js"></script>
+"""
+
+# Embed the ad
+components.html(ad_code, height=100)  # adjust height to match your ad
+st.set_page_config(page_title="Mega Multi-Calculator", layout="centered")
+
 
 # ------------------ Basic Calculator ------------------
 st.header("Basic + − × ÷ ^ mod")
@@ -91,4 +111,5 @@ weight = st.number_input("Weight (kg)", value=70.0)
 height = st.number_input("Height (m)", value=1.75)
 if st.button("Calculate BMI"):
     bmi = weight / (height ** 2)
+
     st.success(f"BMI: {bmi:.2f}")
