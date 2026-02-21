@@ -152,4 +152,5 @@ with tab4:
             st.error("Height must be greater than 0")
 
 
+components.html(ad_code, height=100)
 
