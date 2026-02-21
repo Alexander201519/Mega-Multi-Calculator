@@ -149,9 +149,10 @@ with tab4:
         else:
             st.error("Height must be greater than 0")
           
-st.markdown(""")
+st.markdown("---")
 
 components.html(ad_code, height=100)
+
 
 
 
