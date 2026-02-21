@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mega Multi-Calculator</title>
+<style>
+    body {
+        font-family: 'Courier New', monospace;
+        background: #1c1c1c; /* Dark gray, not pitch black */
+        color: #a8ff60; /* Soft green text */
+        padding: 20px;
+    }
+    h1 {
+        text-align: center;
+        color: #a8ff60;
+        margin-bottom: 30px;
+    }
+    .calculator {
+        background: #2a2a2a; /* lighter dark box */
+        border: 1px solid #4caf50;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 450px;
+    }
+    h2 {
+        color: #a8ff60;
+        margin-bottom: 15px;
+    }
+    input, select, button {
+        padding: 10px;
+        margin: 8px 0;
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 6px;
+        border: 1px solid #4caf50;
+        background: #f4f4f4; /* light background for readability */
+        color: #000; /* black text for inputs */
+        font-size: 16px;
+        outline: none;
+    }
+    input:focus, select:focus {
+        border: 1px solid #8bc34a;
+    }
+    button {
+        cursor: pointer;
+        background: #4caf50; /* green button */
+        color: #000;
+        font-weight: bold;
+        transition: 0.2s;
+    }
+    button:hover {
+        background: #66ff66;
+    }
+    .result {
+        font-weight: bold;
+        margin-top: 10px;
+        padding: 8px;
+        border: 1px solid #4caf50;
+        border-radius: 6px;
+        background: #f4f4f4; /* light background so result is readable */
+        color: #000;
+    }
+</style>
+</head>
+<body>
+
+<h1>Mega Multi-Calculator</h1>
+
+<div class="calculator">
+<h2>Basic + − × ÷</h2>
+<input type="number" id="num1" placeholder="First number">
+<input type="number" id="num2" placeholder="Second number">
+<select id="operation">
+    <option value="add">+</option>
+    <option value="subtract">−</option>
+    <option value="multiply">×</option>
+    <option value="divide">÷</option>
+    <option value="power">^</option>
+    <option value="mod">mod</option>
+</select>
+<button onclick="calculateBasic()">Calculate</button>
+<div class="result" id="basicResult"></div>
+</div>
+
+<div class="calculator">
+<h2>Fraction Calculator</h2>
+<input type="text" id="frac1" placeholder="e.g., 1/2">
+<input type="text" id="frac2" placeholder="e.g., 3/4">
+<select id="fracOperation">
+    <option value="add">+</option>
+    <option value="subtract">−</option>
+    <option value="multiply">×</option>
+    <option value="divide">÷</option>
+</select>
+<button onclick="calculateFraction()">Calculate</button>
+<div class="result" id="fracResult"></div>
+</div>
+
+<div class="calculator">
+<h2>Equation Solver (ax + b = 0)</h2>
+<input type="number" id="a" placeholder="a (coefficient)">
+<input type="number" id="b" placeholder="b (constant)">
+<button onclick="solveEquation()">Solve</button>
+<div class="result" id="eqResult"></div>
+</div>
+
+<div class="calculator">
+<h2>Currency Converter</h2>
+<input type="number" id="amount" placeholder="Amount">
+<select id="currency">
+    <option value="usd_gel">USD → GEL</option>
+    <option value="gel_usd">GEL → USD</option>
+    <option value="usd_eur">USD → EUR</option>
+    <option value="eur_usd">EUR → USD</option>
+    <option value="usd_gbp">USD → GBP</option>
+    <option value="gbp_usd">GBP → USD</option>
+</select>
+<button onclick="convertCurrency()">Convert</button>
+<div class="result" id="currencyResult"></div>
+</div>
+
+<div class="calculator">
+<h2>Temperature Converter</h2>
+<input type="number" id="tempInput" placeholder="Temperature">
+<select id="tempType">
+    <option value="c_to_f">Celsius → Fahrenheit</option>
+    <option value="f_to_c">Fahrenheit → Celsius</option>
+    <option value="c_to_k">Celsius → Kelvin</option>
+    <option value="k_to_c">Kelvin → Celsius</option>
+</select>
+<button onclick="convertTemp()">Convert</button>
+<div class="result" id="tempResult"></div>
+</div>
+
+<div class="calculator">
+<h2>BMI Calculator</h2>
+<input type="number" id="weight" placeholder="Weight (kg)">
+<input type="number" id="height" placeholder="Height (m)">
+<button onclick="calculateBMI()">Calculate</button>
+<div class="result" id="bmiResult"></div>
+</div>
+
+<script>
+// JS stays the same
+function calculateBasic() {
+    const a = parseFloat(document.getElementById('num1').value);
+    const b = parseFloat(document.getElementById('num2').value);
+    const op = document.getElementById('operation').value;
+    let res = 0;
+    switch(op){
+        case 'add': res = a+b; break;
+        case 'subtract': res = a-b; break;
+        case 'multiply': res = a*b; break;
+        case 'divide': res = a/b; break;
+        case 'power': res = Math.pow(a,b); break;
+        case 'mod': res = a%b; break;
+    }
+    document.getElementById('basicResult').innerText = "Result: "+res;
+}
+
+function gcd(x,y){return y?gcd(y,x%y):x;}
+function calculateFraction() {
+    function parseFraction(f){const parts=f.split('/');return parts.length===2?[parseInt(parts[0]),parseInt(parts[1])]:[parseInt(f),1];}
+    let [n1,d1]=parseFraction(document.getElementById('frac1').value);
+    let [n2,d2]=parseFraction(document.getElementById('frac2').value);
+    const op=document.getElementById('fracOperation').value;
+    let num=0, den=0;
+    switch(op){
+        case 'add': num=n1*d2+n2*d1; den=d1*d2; break;
+        case 'subtract': num=n1*d2-n2*d1; den=d1*d2; break;
+        case 'multiply': num=n1*n2; den=d1*d2; break;
+        case 'divide': num=n1*d2; den=n2*d1; break;
+    }
+    const divisor=gcd(num,den);
+    num/=divisor; den/=divisor;
+    document.getElementById('fracResult').innerText=`Result: ${num}/${den}`;
+}
+
+function solveEquation(){
+    const a=parseFloat(document.getElementById('a').value);
+    const b=parseFloat(document.getElementById('b').value);
+    if(a===0) document.getElementById('eqResult').innerText="No solution or infinite solutions";
+    else document.getElementById('eqResult').innerText="x = "+(-b/a);
+}
+
+function convertCurrency(){
+    const amount=parseFloat(document.getElementById('amount').value);
+    const type=document.getElementById('currency').value;
+    const rates = {usd_gel:2.7, gel_usd:1/2.7, usd_eur:0.92, eur_usd:1/0.92, usd_gbp:0.81, gbp_usd:1/0.81};
+    const res = amount*rates[type];
+    document.getElementById('currencyResult').innerText="Result: "+res.toFixed(2);
+}
+
+function convertTemp(){
+    const t=parseFloat(document.getElementById('tempInput').value);
+    const type=document.getElementById('tempType').value;
+    let res=0;
+    switch(type){
+        case 'c_to_f': res=t*9/5+32; break;
+        case 'f_to_c': res=(t-32)*5/9; break;
+        case 'c_to_k': res=t+273.15; break;
+        case 'k_to_c': res=t-273.15; break;
+    }
+    document.getElementById('tempResult').innerText="Result: "+res.toFixed(2);
+}
+
+function calculateBMI(){
+    const w=parseFloat(document.getElementById('weight').value);
+    const h=parseFloat(document.getElementById('height').value);
+    const bmi=w/(h*h);
+    document.getElementById('bmiResult').innerText="BMI: "+bmi.toFixed(2);
+}
+</script>
+</body>
+</html>
