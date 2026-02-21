@@ -18,9 +18,12 @@ ad_code = """
 """
 components.html(ad_code, height=100)
 
+import streamlit as st
+from fractions import Fraction
+
 st.set_page_config(page_title="Mega Multi-Calculator", layout="wide")
 
-# ------------------ Dark Grey Background ------------------
+# ------------------ Dark Grey Background & Smaller Inputs ------------------
 st.markdown(
     """
     <style>
@@ -32,6 +35,23 @@ st.markdown(
     /* Sidebar background if using one */
     .css-1d391kg {
         background-color: rgba(30,30,30,1);
+    }
+    /* Inputs & buttons smaller */
+    input, .stButton>button, select {
+        height: 30px !important;
+        font-size: 14px !important;
+        padding: 3px !important;
+    }
+    /* Headers */
+    h1, h2, h3, h4, h5, h6 {
+        color: #a8ff60;
+    }
+    /* Results */
+    .st-success, .stWarning, .stError {
+        background-color: #f4f4f4;
+        color: #000;
+        border-radius: 6px;
+        padding: 5px;
     }
     </style>
     """,
@@ -48,6 +68,7 @@ tab1, tab2, tab3, tab4 = st.tabs([
     "⚕️ Health"
 ])
 
+# ------------------ BASIC MATH ------------------
 with tab1:
     st.subheader("Basic Calculator")
     num1 = st.number_input("First number", key="b1")
@@ -90,6 +111,7 @@ with tab1:
         except:
             st.error("Invalid fraction")
 
+# ------------------ ADVANCED ------------------
 with tab2:
     st.subheader("Equation Solver (ax + b = 0)")
     a = st.number_input("a (coefficient)", key="eq_a")
@@ -102,6 +124,7 @@ with tab2:
             x = -b / a
             st.success(f"x = {x}")
 
+# ------------------ CONVERSIONS ------------------
 with tab3:
     st.subheader("Currency Converter")
     amount = st.number_input("Amount", key="cur_amount")
@@ -137,6 +160,7 @@ with tab3:
             res = temp - 273.15
         st.success(f"Result: {res:.2f}")
 
+# ------------------ HEALTH ------------------
 with tab4:
     st.subheader("BMI Calculator")
     weight = st.number_input("Weight (kg)", key="bmi_w")
@@ -148,3 +172,8 @@ with tab4:
             st.success(f"BMI: {bmi:.2f}")
         else:
             st.error("Height must be greater than 0")
+
+# ------------------ Ads ------------------
+st.markdown("---")
+st.subheader("Your Ads Here")
+st.write("You can add your ad code or HTML here manually.")
